@@ -39,8 +39,8 @@ const server = app.listen(port, () => {
   }
 })();
 
-process.on('SUGTERM', () => {
-  console.log('👋 SUGTERM RECIEVED. Shutting down gracefully...');
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECIEVED. Shutting down gracefully...');
   server.close(() => {
     console.log('💥 Process terminated!');
   });

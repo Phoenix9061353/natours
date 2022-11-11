@@ -24,7 +24,7 @@ const sendResToken = (user, statusCode, res) => {
     httpOnly: true,
   };
   //保障在 Http下才會製作此cookie送出（保護機制，使用者使用時使用）
-  if (req.secure || req.header('x-forwarded-proto') === 'https')
+  if (req.secure || req.get('x-forwarded-proto') === 'https')
     cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
