@@ -10,6 +10,7 @@ const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -28,6 +29,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 ///////////////////////////////////////////
 //Global Middleware: 負責處理req與res，以輸出最後res的程式
+//Set CORS
+app.use(cors());
+app.options('*', cors());
 //Set security Http headers
 // app.use(helmet());
 // Further HELMET configuration for Security Policy (CSP)
