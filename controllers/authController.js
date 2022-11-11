@@ -24,7 +24,8 @@ const sendResToken = (user, statusCode, res) => {
     httpOnly: true,
   };
   //保障在 Http下才會製作此cookie送出（保護機制，使用者使用時使用）
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  if (req.secure || req.header('x-forwarded-proto') === 'https')
+    cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined;
@@ -205,7 +206,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     });
   } catch (err) {
     user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
+    user.passwordRestExpires = undefined;
     await user.save({ validateBeforeSave: false });
 
     return next(

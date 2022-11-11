@@ -38,3 +38,10 @@ const server = app.listen(port, () => {
     server.close(() => process.exit(1));
   }
 })();
+
+process.on('SUGTERM', () => {
+  console.log('👋 SUGTERM RECIEVED. Shutting down gracefully...');
+  server.close(() => {
+    console.log('💥 Process terminated!');
+  });
+});
