@@ -4,7 +4,7 @@
 //use fetch instead of axios
 import { showAlert } from './alert';
 export const login = async (email, password) => {
-  const req = await fetch('http://127.0.0.1:3000/api/v1/users/login', {
+  const req = await fetch('/api/v1/users/login', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -28,7 +28,7 @@ export const login = async (email, password) => {
 };
 
 export const logout = async () => {
-  const req = await fetch('http://127.0.0.1:3000/api/v1/users/logout', {
+  const req = await fetch('/api/v1/users/logout', {
     method: 'GET',
   });
   const res = await req.json();

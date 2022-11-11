@@ -17,7 +17,7 @@ export const updateSettings = async (data, type) => {
     options.headers = { 'Content-Type': 'application/json' };
     options.body = JSON.stringify(dt);
   }
-  const req = await fetch(`http://127.0.0.1:3000/api/v1/users/${url}`, options);
+  const req = await fetch(`/api/v1/users/${url}`, options);
 
   const res = await req.json();
 

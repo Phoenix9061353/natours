@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -138,6 +139,7 @@ app.use(
 //   //執行next function(必須，否則會卡住)
 //   next();
 // });
+app.use(compression());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
